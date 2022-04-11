@@ -5,11 +5,11 @@ from . import appbuilder, db
 from .models import Member
 from flask import jsonify,make_response,session
 
-class fail_pushModelView(BaseView):
-    default_view = 'method1'
-    @expose('/method1/')
+class userinfo(BaseView):
+    default_view = 'list'
+    @expose('/list/')
     @has_access
-    def method1(self):
+    def list(self):
         session['bucket'] = 'bucket'
         users = db.session.query(Member).all()
         titleinfo = ['ID號','帳號','日期']
@@ -19,7 +19,64 @@ class fail_pushModelView(BaseView):
         stack = {  # dict
         'add': './../add', 
         'edit': './../edit', 
-        'del': './../del', 
+        'del': '../del', 
+        'main' : '加帳號', 
+        'info' : '帳號',
+        'titleinfo': titleinfo,
+        'allinfo': allinfo
+        }
+        return render_template('shows.twig', stack=stack)
+    
+    @expose('/add/')
+    def add(self):
+        session['bucket'] = 'bucket'
+        users = db.session.query(Member).all()
+        titleinfo = ['ID號','帳號','日期']
+        allinfo = []
+        for user in users:
+            allinfo.append({'id':user.id, 'infos': [user.name, user.created_at]})
+        stack = {  # dict
+        'add': './../add', 
+        'edit': './../edit', 
+        'del': '../delete', 
+        'main' : '加帳號', 
+        'info' : '帳號',
+        'titleinfo': titleinfo,
+        'allinfo': allinfo
+        }
+        return render_template('shows.twig', stack=stack)   
+
+    @expose('/edit/')
+    def edit(self):
+        session['bucket'] = 'bucket'
+        users = db.session.query(Member).all()
+        titleinfo = ['ID號','帳號','日期']
+        allinfo = []
+        for user in users:
+            allinfo.append({'id':user.id, 'infos': [user.name, user.created_at]})
+        stack = {  # dict
+        'add': './../add', 
+        'edit': './../edit', 
+        'del': '../delete', 
+        'main' : '加帳號', 
+        'info' : '帳號',
+        'titleinfo': titleinfo,
+        'allinfo': allinfo
+        }
+        return render_template('shows.twig', stack=stack)   
+    
+    @expose('/delete/')
+    def delete(self):
+        session['bucket'] = 'bucket'
+        users = db.session.query(Member).all()
+        titleinfo = ['ID號','帳號','日期']
+        allinfo = []
+        for user in users:
+            allinfo.append({'id':user.id, 'infos': [user.name, user.created_at]})
+        stack = {  # dict
+        'add': './../add', 
+        'edit': './../edit', 
+        'del': '../del', 
         'main' : '加帳號', 
         'info' : '帳號',
         'titleinfo': titleinfo,
@@ -28,7 +85,7 @@ class fail_pushModelView(BaseView):
         return render_template('shows.twig', stack=stack)   
     
 db.create_all()
-appbuilder.add_view(fail_pushModelView,'記錄',icon = 'fa-address-card-o',category = '回填')
+appbuilder.add_view(userinfo,'記錄',icon = 'fa-address-card-o',category = '回填')
 
 @appbuilder.app.errorhandler(404)
 def page_not_found(e):
