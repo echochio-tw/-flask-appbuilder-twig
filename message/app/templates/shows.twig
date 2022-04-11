@@ -1,5 +1,5 @@
 {% include "header.html" %}
-<a class="btn btn-primary" href="{{ stack.add }}?act=add"> <i class="glyphicon glyphicon-plus-sign">
+<a class="btn btn-primary" href="{{ stack.add }}/?act=add"> <i class="glyphicon glyphicon-plus-sign">
 </i>{{stack.main}}</a>
 	<h1>{{stack.info}}</h1>
 	<table id="sorted" class="table table-striped table-bordered">
@@ -18,7 +18,7 @@
 			{% for infos in allinfo.infos %}
 				<td>{{infos}}</td>
 			{% endfor %}
-			<td><a href="{{ stack.edit }}?act=edit&id={{ allinfo.id }}">
+			<td><a href="{{ stack.edit }}/?act=edit&id={{ allinfo.id }}">
 			<i class="glyphicon glyphicon-edit"></i></a></td>
 			<td><a href="{{ stack.del }}/?act=delete&id={{ allinfo.id }}&cat={{ allinfo.infos[0] }}" onclick="return navConfirm(this.href);">
 			<i class="glyphicon glyphicon-trash"></i></a></td>
