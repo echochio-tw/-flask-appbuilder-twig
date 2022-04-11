@@ -1,0 +1,28 @@
+{% include "header.html" %}
+<a class="btn btn-primary" href="{{ stack.self }}?act=add"> <i class="glyphicon glyphicon-plus-sign">
+</i>{{stack.main}}</a>
+	<h1>{{stack.info}}</h1>
+	<table id="sorted" class="table table-striped table-bordered">
+	<thead>
+		<tr>
+			{% for ss in stack.titleinfo %}
+			<th>{{ ss }}</th>
+			{% endfor %}
+			<th class="not">Edit</th>
+			<th class="not">Delete</th>
+		</tr>
+	</thead>
+	<tr>
+		{% for allinfo in stack.allinfo %}
+			<td>{{allinfo.id}}</td>
+			{% for infos in allinfo.infos %}
+				<td>{{infos}}</td>
+			{% endfor %}
+			<td><a href="{{ stack.self }}?act=edit&id={{ allinfo.id }}">
+			<i class="glyphicon glyphicon-edit"></i></a></td>
+			<td><a href="{{ stack.self }}?act=delete&id={{ allinfo.id }}&cat={{ allinfo.infos[0] }}" onclick="return navConfirm(this.href);">
+			<i class="glyphicon glyphicon-trash"></i></a></td>
+	</tr>
+	{% endfor %}
+	</table>
+	{% include 'floor.html' %}

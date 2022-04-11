@@ -1,0 +1,8 @@
+	<label>{{ stack.label }}  {{ stack.old_info }} </label>
+	<select class="form-control" name="{{ stack.id_name }}">
+	{% for info in stack.infos %}
+		<option value="{{ info.id_info }}" {{ info.old_select }} > {{ info.source }} {{ info.data_info }}  </option>';
+	{% endfor %}
+	</select>
+	<br>
+	<br>

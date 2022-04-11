@@ -1,0 +1,14 @@
+<!doctype html>
+<p style="text-align:center">
+  <table border = 1>
+    {% for key, value in result.items() %}
+
+    <tr>
+       <th> {{ key }} </th>
+       <td> {{ value }} </td>
+    </tr>
+
+    {% endfor %}
+ </table>
+<input type ="button" onclick="javascript:location.href='./'" value="回首頁"></input>
+</p>

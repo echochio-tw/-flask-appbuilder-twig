@@ -1,0 +1,7 @@
+<form method="post" action="{{ stack.self }}" enctype="multipart/form-data">
+	<fieldset>
+		<legend class="hidden-first">{{ stack.do }}</legend>
+		<input name="save" type="hidden" value="save">
+		<input name="cat" type="hidden" value="{{ stack.table }}">
+		<input name="id" type="hidden" value="{{ stack.id }}">
+		<input name="act" type="hidden" value="{{ stack.act }}">
