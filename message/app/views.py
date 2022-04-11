@@ -17,7 +17,9 @@ class fail_pushModelView(BaseView):
         for user in users:
             allinfo.append({'id':user.id, 'infos': [user.name, user.created_at]})
         stack = {  # dict
-        'self': './', 
+        'add': './../add', 
+        'edit': './../edit', 
+        'del': './../del', 
         'main' : '加帳號', 
         'info' : '帳號',
         'titleinfo': titleinfo,
