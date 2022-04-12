@@ -1,2 +1,2 @@
-# -flask-appbuilder-twig
+# flask-appbuilder-twig
 test twig
