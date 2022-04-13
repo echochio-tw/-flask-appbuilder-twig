@@ -25,7 +25,7 @@
             <!--End breadcrumbs -->
             <!-- START searchBar -->
             <div class="row">
-                <form action="../../" method="POST" novalidate="novalidate">
+                <form id="telsent" novalidate="novalidate">
                     <div class="row">
                         <div class="input-field col s6 offset-s1">
                             <i class="material-icons prefix">mode_edit</i>
@@ -51,7 +51,7 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s6 offset-s1">
-                            <input type="submit" value="发送">
+                            <input type="submit" value="发送" id="submitExample">
                             <input type="reset" value="重置">
                         </div>
                     </div>
@@ -62,4 +62,34 @@
         </div>
 
     </div>
+    <p id="result"></p> <!-- 顯示回傳資料 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!-- 引入 jQuery -->
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $("#submitExample").click(function() { //ID 為 submitExample 的按鈕被點擊時
+            $.ajax({
+                type: "POST", //傳送方式
+                url: "../../", //傳送目的地
+                dataType: "json", //資料格式
+                data: { //傳送資料
+                    phone: $("#phone").val(), //表單欄位 ID phone
+                    message: $("#message").val() //表單欄位 ID message
+                },
+                success: function(data) {
+                    if (data.phone) { //如果後端回傳 json 資料有 phone
+                        $("#telsent")[0].reset(); //重設 ID 為 telsent 的 form (表單)
+                        $("#result").html('<font color="#007500">您的電話為「<font color="#0000ff">' + data.phone + '</font>」，验证码「<font color="#0000ff">' + data.message + '</font>」！</font>');
+                    } else { //否則讀取後端回傳 json 資料 errorMsg 顯示錯誤訊息
+                        $("#telsent")[0].reset(); //重設 ID 為 telsent 的 form (表單)
+                        $("#result").html('<font color="#ff0000">' + data.errorMsg + '</font>');
+                    }
+                },
+                error: function(jqXHR) {
+                    $("#telsent")[0].reset(); //重設 ID 為 telsent 的 form (表單)
+                    $("#result").html('<font color="#ff0000">發生錯誤：' + jqXHR.status + '</font>');
+                }
+            })
+        })
+    });
+    </script>
     {% endblock %}
