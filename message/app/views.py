@@ -6,6 +6,7 @@ from . import appbuilder, db
 from .models import Member
 from flask import jsonify,make_response,session
 from flask import g
+from flask import request
 
 def get_user():
     return g.user.username
@@ -138,9 +139,21 @@ def page_not_found(e):
     )
 
 class ApiView(BaseView):
-    route_base = "/api"
+    route_base = "/api"        
     @expose('/', methods=['GET', 'POST'])
     def method(self):
         return jsonify({'error_Code':403,'error_Message':'not support'})
 
+    @expose('/SendSMS', methods=['POST'])
+    @expose('/SendSMS/', methods=['POST'])
+    def sendSMS(self):
+        dic = request.form
+        print (dic)
+        print (dic['message'])
+        if ('phone' not in dic) or ('message' not in dic):
+            return jsonify([{'error_Code':403, 'error_Message':'Error input'}])
+        else :
+            return jsonify([{'phone':dic['phone'], 'message':dic['message']}])
+    
+appbuilder.add_api(ApiView)
 db.create_all()
