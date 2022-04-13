@@ -1,0 +1,65 @@
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700|Montserrat:400,400i,500);
+        @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+        #work-collections .collection-item.avatar {
+            height: auto;
+            padding-top: 22px;
+        }
+        
+        #content .container .row {
+            margin-bottom: 0;
+        }
+    </style>
+    {% extends "appbuilder/base.html" %} {# Inherit from base.html #}
+ 
+{% block content %}
+    <div id="breadcrumbs-wrapper">
+        <!-- Search for small screen -->
+        <div class="container">
+            <!--Start breadcrumbs -->
+            <div class="row">
+                <div class="col s10 m6 l6">
+                    <h4 class="breadcrumbs-title">发送验证码短讯(大陸號請勿帶國碼）</h4>
+                </div>
+            </div>
+            <!--End breadcrumbs -->
+            <!-- START searchBar -->
+            <div class="row">
+                <form action="../../" method="POST" novalidate="novalidate">
+                    <div class="row">
+                        <div class="input-field col s6 offset-s1">
+                            <i class="material-icons prefix">mode_edit</i>
+                            <textarea id="message" class="materialize-textarea" name="message" placeholder="ex: 549" maxlength="155"></textarea>
+                            <label for="message" class="active">验证码</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6 offset-s1">
+                            <i class="material-icons prefix">mode_edit</i>
+                            <textarea id="phone" class="materialize-textarea" name="phone" placeholder="ex: 849100100"></textarea>
+                            <label for="message" class="active">手机号</label>
+                            <div id="card-alert" class="card gradient-45deg-light-blue-cyan">
+                                <div class="card-content white-text">
+                                    <p>
+                                        <i class="material-icons">info_outline</i> &nbsp;&nbsp; 注意 : 發送完毕后，下方的MSGID请自行記錄下來
+                                        <p></p>
+                                        <i class="material-icons">info_outline</i> &nbsp;&nbsp; 注意 : 发送完毕后，要5-10分后再做MSGID查询
+                                        <p></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6 offset-s1">
+                            <input type="submit" value="发送">
+                            <input type="reset" value="重置">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <hr>
+
+        </div>
+
+    </div>
+    {% endblock %}
