@@ -1,4 +1,7 @@
 {% include "header.html" %}
+{% extends "appbuilder/base.html" %} {# Inherit from base.html #}
+ 
+{% block content %}
 <a class="btn btn-primary" href="{{ stack.add }}/?act=add"> <i class="glyphicon glyphicon-plus-sign">
 </i>{{stack.main}}</a>
 	<h1>{{stack.info}}</h1>
@@ -26,3 +29,4 @@
 	{% endfor %}
 	</table>
 	{% include 'floor.html' %}
+	{% endblock %}
